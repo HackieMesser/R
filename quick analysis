@@ -1,0 +1,11 @@
+# Load the data
+data <- read.csv(file.choose())
+
+# Create a new variable to group the dependent variable into 2 groups
+data$grouped_variable <- ifelse(data$dependent_variable %in% c("group1", "group2", "group3"), "group1", "group2")
+
+# Fit a logistic regression model
+model <- glm(grouped_variable ~ independent_variable1 + independent_variable2, data = data, family = "binomial")
+
+# Summarize the model
+summary(model)
